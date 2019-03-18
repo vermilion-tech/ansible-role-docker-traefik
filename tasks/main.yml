@@ -26,6 +26,11 @@
     owner: root
     group: root
 
+- name: Create Traefik Network
+  docker_network:
+    name: "{{ docker.network }}"
+    state: present
+
 - name: Create Traefik Container
   docker_container:
     name: "{{ docker.container_name }}"
