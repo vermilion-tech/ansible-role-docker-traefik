@@ -1,6 +1,6 @@
 Role Name
 =========
-`$ ansible-galaxy install kadenlnelson.ansible_role_docker_traefik`
+`$ ansible-galaxy install vermilion_tech.ansible_role_docker_traefik`
 
 Installs Traefik as a Docker Container.
 
@@ -28,10 +28,10 @@ Dependencies
 
 Example Playbook
 ----------------
-`$ ansible-galaxy install kadenlnelson.ansible_role_docker_traefik`
+`$ ansible-galaxy install vermilion_tech.ansible_role_docker_traefik`
     - hosts: all
       roles:
-         - { role: kadenlnelson.ansible_role_docker_traefik }
+         - { role: vermilion_tech.ansible_role_docker_traefik }
 
 License
 -------
