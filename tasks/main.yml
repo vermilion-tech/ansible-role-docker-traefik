@@ -1,0 +1,44 @@
+---
+
+- name: Create path
+  file:
+    path: "{{ path }}"
+    state: directory
+    mode: 0755
+    owner: root
+    group: root
+
+- name: Touch acme.json
+  file:
+    path: "{{ path }}/acme.json"
+    state: touch
+    mode: 0600
+    modification_time: preserve
+    access_time: preserve
+    owner: root
+    group: root
+
+- name: Create traefik.toml
+  template:
+    src: traefik.toml.j2
+    dest: "{{ path }}/traefik.toml"
+    mode: 0755
+    owner: root
+    group: root
+
+- name: Create Traefik Container
+  docker_container:
+    name: "{{ docker.container_name }}"
+    image: traefik:{{ traefik.version }}
+    restart_policy: always
+    state: started
+    ports:
+      - "80:80"
+      - "443:443"
+      - "8080:8080"
+    volumes:
+      - "{{ path }}/traefik.toml:/traefik.toml"
+      - "{{ path }}/acme.json:/acme.json"
+      - "{{ docker.socket_path }}:{{ docker.socket_path }}"
+    networks:
+      - name: "{{ docker.network }}"

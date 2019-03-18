@@ -1,0 +1,17 @@
+---
+# defaults file for .
+
+path: /docker/traefik
+
+traefik:
+  version: 1.7.9
+  debug: 'false'
+
+docker:
+  container_name: traefik
+  network: traefik
+  socket_path: /var/run/docker.sock
+
+acme:
+  email: kaden@vermilion.tech
+  staging: False
